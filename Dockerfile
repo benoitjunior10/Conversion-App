@@ -61,4 +61,4 @@ RUN test -f /usr/local/tomcat/webapps/ROOT/health.txt
 
 EXPOSE 10000
 
-CMD ["sh", "-c", "sed -i \"0,/port=\\\"8080\\\"/s//port=\\\"${PORT:-10000}\\\"/\" conf/server.xml && catalina.sh run"]
+CMD ["sh", "-c", "sed -i \"0,/port=\\\"8080\\\"/s//port=\\\"${PORT:-10000}\\\"/\" conf/server.xml && echo '=== ROOT FILES ===' && find /usr/local/tomcat/webapps/ROOT -maxdepth 3 -type f | sort && echo '=== START TOMCAT ===' && catalina.sh run"]
